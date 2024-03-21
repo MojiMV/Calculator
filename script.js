@@ -1,6 +1,10 @@
 let array = [];
 let lastClickedId = "";
+let offClicked = false;
+
 const display = document.querySelector(".display");
+display.textContent = "0";
+const buttons = document.querySelectorAll(".buttons-container button")
 
 function add(a, b){
     return a + b;
@@ -43,6 +47,32 @@ function operate(arr){
     display.textContent = result;
 }
 
+function handleOffClick(off){
+    if (off == false){
+        offClicked = !offClicked;
+        display.textContent = "";
+        array = [];
+        display.classList.toggle("active");
+        buttons.forEach(button => {
+            button.disabled = true;
+        });
+        const offBut = document.querySelector("#off");
+        offBut.disabled = false;
+    } else {
+        offClicked = !offClicked;
+        display.classList.toggle("active");
+        display.textContent = "0";
+        buttons.forEach(button => {
+            button.disabled = false;
+        })
+    }
+}
+
+function validDot(){
+    let dotArr = display.textContent.split(".");
+    return !(Boolean(dotArr[1]));
+}
+
 document.addEventListener("click", e =>{
     let target = e.target.id;
     
@@ -57,30 +87,21 @@ document.addEventListener("click", e =>{
         case "seven7":
         case "eight8":
         case "nine9":
-            if (lastClickedId === "equal"){
+            if (lastClickedId === "equal" || (display.textContent.length === 1 && display.textContent === "0")){
                 display.textContent = "";
-            }
-            display.textContent += target[target.length - 1];
-            lastClickedId = target;
+            }; 
+            if (validDot()){
+                display.textContent += target[target.length - 1];
+                lastClickedId = target;
+            };
+            
             break;
         case "add":
-            array.push(+(display.textContent));
-            array.push("add");
-            display.textContent = "";
-            break;
         case "multiply":
-            array.push(+(display.textContent));
-            array.push("multiply");
-            display.textContent = "";
-            break;
         case "divide":
-            array.push(+(display.textContent));
-            array.push("divide");
-            display.textContent = "";
-            break;
         case "subtract":
             array.push(+(display.textContent));
-            array.push("subtract");
+            array.push(target);
             display.textContent = "";
             break;
         case "equal":
@@ -90,8 +111,18 @@ document.addEventListener("click", e =>{
             operate(array);
             break;
         case "mc":
-            display.textContent = "";
+            display.textContent = "0";
+            array = [];
             break;
+        case "off":
+            handleOffClick(offClicked);
+            break;
+        case "dot":
+            if (!(display.textContent.includes("."))){
+                display.textContent += ".";
+            }
+            break;
+
     }
     
 })
