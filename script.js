@@ -73,6 +73,19 @@ function validDot(){
     return !(Boolean(dotArr[1]));
 }
 
+    document.addEventListener("keypress", e => {
+        let key = e.key;
+
+        switch(key){
+            case "1":
+                const num1 = document.querySelector("#one1");
+                num1.click();
+                break;
+        }
+    });
+
+
+
 document.addEventListener("click", e =>{
     let target = e.target.id;
     
@@ -125,4 +138,5 @@ document.addEventListener("click", e =>{
 
     }
     
-})
+});
+
