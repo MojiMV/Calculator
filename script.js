@@ -150,19 +150,37 @@ document.addEventListener("click", e =>{
             if (lastClickedId === "equal" || (display.textContent.length === 1 && display.textContent === "0")){
                 display.textContent = "";
             }; 
-            if (validDot()){
+            if (validDot()){//
+                if (display.textContent[0] === "+" || 
+                    display.textContent[0] === "-" || 
+                    display.textContent[0] === "/" || 
+                    display.textContent[0] === "*") {
+                    display.textContent = "";
+                }
                 display.textContent += target[target.length - 1];
                 lastClickedId = target;
             };
             
             break;
         case "add":
+            array.push(+(display.textContent));
+            array.push(target);
+            display.textContent = "+";
+            break;
         case "multiply":
+            array.push(+(display.textContent));
+            array.push(target);
+            display.textContent = "*";
+            break;
         case "divide":
+            array.push(+(display.textContent));
+            array.push(target);
+            display.textContent = "/";
+            break;
         case "subtract":
             array.push(+(display.textContent));
             array.push(target);
-            display.textContent = "";
+            display.textContent = "-";
             break;
         case "equal":
             lastClickedId = target;
