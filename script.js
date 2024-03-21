@@ -73,16 +73,63 @@ function validDot(){
     return !(Boolean(dotArr[1]));
 }
 
-    document.addEventListener("keypress", e => {
-        let key = e.key;
+document.addEventListener("keydown", e => {
+    let key = e.key;
 
-        switch(key){
-            case "1":
-                const num1 = document.querySelector("#one1");
-                num1.click();
-                break;
-        }
-    });
+    switch(key){
+        case "1":
+            document.querySelector("#one1").click();
+            break;
+        case "2":
+            document.querySelector("#two2").click();
+            break;
+        case "3":
+            document.querySelector("#three3").click();
+            break;
+        case "4":
+            document.querySelector("#four4").click();
+            break;
+        case "5":
+            document.querySelector("#five5").click();
+            break;
+        case "6":
+            document.querySelector("#six6").click();
+            break;
+        case "7":
+            document.querySelector("#seven7").click();
+            break;
+        case "8":
+            document.querySelector("#eight8").click();
+            break;
+        case "9":
+            document.querySelector("#nine9").click();
+            break;
+        case "+":
+            document.querySelector("#add").click();
+            break;
+        case "-":
+            document.querySelector("#subtract").click();
+            break;
+        case "*":
+            document.querySelector("#multiply").click();
+            break;
+        case "/":
+            document.querySelector("#divide").click();
+            break;
+        case ".":
+            document.querySelector("#dot").click();
+            break;
+        case "Enter":
+            document.querySelector("#equal").click();
+            break;
+        case "Escape":
+            document.querySelector("#off").click();
+            break;
+        case "Delete":
+            document.querySelector("#mc").click();
+    }
+});
+
 
 
 
